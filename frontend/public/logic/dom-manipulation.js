@@ -39,21 +39,17 @@ console.log(`%c\nREACHED DOM-MANIPULATION.JS\n\n\n`, `color:lime;font-family:sys
 /* 
     SpreadJS Selectors (REPLACES: document.getElementBy[Id, ClassName, TagName]('') & document.[querySelector, querySelctorAll]('') )
 
-    getById()
-    getByClass()
-    getByTag()
-    getFirstEl()
-    getAllEls()
-
+    getEl()
 */
 
 
 
 // SpreadApp Containers & Logic
 
-const backstageEl = getById('spreadAppBackstage')
-const spreadAppEl = getById('spreadApp')
-const ON_OFF = getById('ON_OFF_CONTROLS')
+const backstageEl = getEl('#spreadAppBackstage')[0]
+const spreadAppEl = getEl('#spreadApp')[0]
+const ON_OFF = getEl('#ON_OFF_CONTROLS')[0]
+
 
 console.log(backstageEl)
 console.log(spreadAppEl)
@@ -65,8 +61,163 @@ ON_OFF.addEventListener('click', e => {
     spreadAppEl.classList.toggle('off')
 })
 
+/* const imagesContainer = getEl('.slider-inner')[0]
+const PREV_BTN = getEl('.prev')[0]
+const NEXT_BTN = getEl('.next')[0]
+
+const allImages = getEl('img')
+allImages.forEach(img => {
+    console.log(img)
+})
+
+console.log(NEXT_BTN)
+NEXT_BTN.addEventListener('click', e => {
+    const currentImg = getEl('.active')
+    const nextImg = currentImg.next()
+    if (nextImg.length) {
+        currentImg.removeClass("active").css("z-index", -10)
+        nextImg.addClass("active").css("z-index", 10)
+    }
+})
+
+
+getEl(".prev").on("click", function () {
+    const currentImg = getEl(".active")
+    const prevImg = currentImg.prev()
+    
+    if (prevImg.length) {
+        currentImg.removeClass("active").css("z-index", -10)
+        prevImg.addClass("active").css("z-index", 10)
+    }
+})
 
 
 
+*/
 
 /* DOM-MANIPULATION JS END */
+let imageArray = []
+const imageDataEl = getEl("#spreadAppData")[0]
+const imageBackstageEl = getEl("#spreadAppBackstageImg")[0]
+console.log(imageDataEl)
+const allImages = getEl("img")
+allImages.forEach((img, index) => {
+    console.log('Image Index: ', img.getAttribute('src'))
+    const imageData = `${allImages[index].getAttribute('src')}`
+
+
+    const imageElSrc = img.getAttribute('src')
+    console.log('imageElSrc: ', imageElSrc)
+    imageArray.push(imageElSrc)
+})
+
+
+// imageDataEl.appendChild(imageElArray)
+
+
+console.table(imageArray)
+imageArray.forEach((img, index) => {
+
+    let imageEl = document.createElement('div')
+    imageEl.classList.add('image-data')
+    imageEl.setAttribute(`data-backstage-image`, `${index}`)
+    let imageElContainer = document.createElement('div')
+    imageElContainer.setAttribute(`data-backstage-image-container`, `${index}`)
+
+    imageEl.innerText = img
+    imageDataEl.appendChild(imageEl)
+
+})
+
+const allImagesData = getEl('.image-data')
+
+allImagesData.forEach((imgData, index) => {
+    imgData.addEventListener('click', e => {
+        console.log('imgData: ', imgData.getAttribute('data-backstage-image'))
+
+        const parentContainer = getEl('.image-data')
+        parentContainer.forEach(parent => {
+            const parentIndex = parseInt(parent.getAttribute('data-backstage-image'))
+            
+            if (parentIndex == index) {
+                const currentImageIndex = parseInt(imgData.getAttribute('data-backstage-image'))
+                if (currentImageIndex == index) {
+                    let imgContainer = document.createElement('img')
+                    imgContainer.setAttribute('data-image-id', `image__${index}`)
+                    imgContainer.setAttribute('id', `image__${index}`)
+                    console.log(currentImageIndex, index)
+                    imgContainer.setAttribute('src', imgData.innerText)
+                    imgContainer.classList.add('backstage-image')
+                    parent.appendChild(imgContainer)
+
+                    imgContainer.addEventListener('click', e => {
+                        const imgContainerAttr = imgContainer.getAttribute('data-image-id')
+                        let imgToRemove = getEl(`#${imgContainerAttr}`)
+                        console.log('imgToRemove: ', imgToRemove)
+                        console.log('imgContainer Attr: ', imgContainerAttr)
+                        parent.remove(imgToRemove)
+                    })
+                }
+                
+            }
+        })
+
+    })
+})
+
+
+
+getEl(document).ready(function () {
+    getEl(document).on("click", ".next", function () {
+        const currentImg = getEl(".active")
+        currentImg.forEach((img, index) => {
+            console.log('Image Index: ', currentImg[index])
+        })
+        // const currentImgIteration = currentImg[i]
+        // console.log(currentImg[0])
+        const nextImg = currentImg.next()
+
+        if (nextImg.length) {
+            currentImg.removeClass("active").css("z-index", -10)
+            nextImg.addClass("active").css("z-index", 10)
+        }
+    })
+
+    getEl(".prev").on("click", function () {
+        const currentImg = getEl(".active")
+        const prevImg = currentImg.prev()
+
+        if (prevImg.length) {
+            currentImg.removeClass("active").css("z-index", -10)
+            prevImg.addClass("active").css("z-index", 10)
+        }
+    })
+})
+
+getEl.get({
+    url: "https://hub.dummyapis.com/employee?noofRecords=10&idStarts=1001",
+    success: data => {
+        let dataEl = getEl('#apiData')[0]
+        console.log(dataEl)
+        console.log("First success", data)
+        console.log(data[0])
+        data.forEach(item => {
+
+            let itemEl = document.createElement('div')
+            itemEl.classList.add('array-item')
+            let itemName = document.createElement('p')
+            itemName.innerText = `${item.firstName} ${item.lastName}`
+            itemEl.appendChild(itemName)
+            let itemEmail = document.createElement('a')
+            itemEmail.setAttribute('href', `mailto:${item.email}`)
+            itemEmail.innerText = item.email
+            console.log(item.email)
+            itemEl.appendChild(itemEmail)
+
+            dataEl.appendChild(itemEl)
+        })
+    },
+})
+    .done(data => console.log("Second success", data))
+    .fail(e => console.error("Fail", e))
+    .always(() => console.log("Always"))
