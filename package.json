@@ -1,0 +1,44 @@
+{
+  "name": "spreadjs",
+  "version": "1.0.0",
+  "description": "A framework covering everything - from HTML Templating to CSS to Javascript to Databases to IoT to WebRTC and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WideSpreadOS/SpreadJS.git"
+  },
+  "keywords": [
+    "SpreadJS",
+    "WideSpread",
+    "framework",
+    "HTML",
+    "Templating",
+    "Engine",
+    "CSS",
+    "Javascript",
+    "ORM",
+    "ODM",
+    "MQTT",
+    "Sockets",
+    "WebRTC",
+    "IoT",
+    "IIoT",
+    "2D",
+    "3D",
+    "VR",
+    "AR",
+    "MR",
+    "SpreadShield",
+    "FlexFloor",
+    "SpreadMirror"
+  ],
+  "author": "Jonny O - WideSpread",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WideSpreadOS/SpreadJS/issues"
+  },
+  "homepage": "https://github.com/WideSpreadOS/SpreadJS#readme"
+}
