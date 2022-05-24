@@ -284,7 +284,7 @@ a {
 
 
 
-.container {
+.container123 {
     margin-top: 30px;
     width: 100%;
     max-width: 100%;
@@ -347,7 +347,7 @@ a {
 .hidden {
     display: none;
 }
- */
+ 
 
 
 a {
@@ -355,7 +355,7 @@ a {
     text-decoration: none;
 }
 
-.container {
+.container123 {
     /* width: 540px; */
     /* margin: 40px auto; */
     overflow: hidden;
@@ -431,4 +431,19 @@ a {
     max-height: 90vh;
     border-radius: 16px;
     margin-top: 10px;
+}
+
+
+
+// SCSS BEGINS
+
+
+.container {
+    & h1 {
+        color: green;
+    }
+
+    &__text {
+        color: blue;
+    }
 }

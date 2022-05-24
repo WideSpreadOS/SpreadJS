@@ -64,7 +64,7 @@ function getEl(param) {
 /* DOM-MANIPULATION END */
 
 
-class ElementCollection extends Array {
+export class ElementCollection extends Array {
     ready(cb) {
         const isReady = this.some(e => {
             return e.readyState != null && e.readyState != "loading"
@@ -117,7 +117,7 @@ class ElementCollection extends Array {
     }
 }
 
-class AjaxPromise {
+export class AjaxPromise {
     constructor(promise) {
         this.promise = promise
     }
@@ -141,7 +141,7 @@ class AjaxPromise {
     }
 }
 
-function getEl(param) {
+export function getEl(param) {
     if (typeof param === "string" || param instanceof String) {
         return new ElementCollection(...document.querySelectorAll(param))
     } else {

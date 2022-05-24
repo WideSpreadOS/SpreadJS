@@ -42,7 +42,9 @@ console.log(`%c\nREACHED DOM-MANIPULATION.JS\n\n\n`, `color:lime;font-family:sys
     getEl()
 */
 
+// Imports
 
+import { getEl } from "./dom-manipulation-main"
 
 // SpreadApp Containers & Logic
 
