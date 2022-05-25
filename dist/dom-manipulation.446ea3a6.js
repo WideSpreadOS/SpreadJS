@@ -174,70 +174,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-console.log("%c\nREACHED DOM-MANIPULATION-MAIN.JS", "color:lime;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 1px black;font-weight:bold; border-bottom: solid 2px lime;");
+// console.log(`%c\nREACHED DOM-MANIPULATION-MAIN.JS`, `color:lime;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 1px black;font-weight:bold; border-bottom: solid 2px lime;`)
+
 /* DOM-MANIPULATION START */
-
-/* 
-class ElementCollection extends Array {
-    ready(cb) {
-        const isReady = this.some(e => {
-            console.log(e)
-            return e.readyState != null && e.readyState != 'loading'
-        })
-        if (isReady) {
-            cb()
-        } else {
-            this.on('DOMContentLoaded', cb)
-        }
-    }
-
-    on(event, cb) {
-        this.forEach(e => {
-            console.log(e)
-            e.addEventListener(event, cb)
-        })
-    }
-
-    next() {
-        return this.map(e => e.nextElementSibling).filter(e => e != null)
-    }
-
-    prev() {
-        return this.map(e => e.previousElementSibling).filter(e => e != null)
-    }
-
-    removeClass(className) {
-        this.forEach(e => e.classList.remove(className))
-        return this
-    }
-
-    addClass(className) {
-        this.forEach(e => e.classList.add(className))
-        return this
-    }
-
-    css(property, value) {
-        const camelProp = property.replace(/(-[a-z])/, g => {
-            return g.replace("-", "").toUpperCase()
-        })
-        this.forEach(e => (e.style[camelProp] = value))
-        return this
-    }
-}
-
-function getEl(param) {
-    if (typeof param === 'string' || param instanceof String) {
-        return new ElementCollection(...document.querySelectorAll(param))
-    } else {
-        return new ElementCollection(param)
-    }
-}
-
-
- */
-
-/* DOM-MANIPULATION END */
-
 var ElementCollection = /*#__PURE__*/function (_Array) {
   _inherits(ElementCollection, _Array);
 
@@ -330,6 +269,10 @@ var ElementCollection = /*#__PURE__*/function (_Array) {
 
   return ElementCollection;
 }( /*#__PURE__*/_wrapNativeSuper(Array));
+/* DOM-MANIPULATION END */
+
+/* AJAX START */
+
 
 exports.ElementCollection = ElementCollection;
 
@@ -406,6 +349,7 @@ getEl.get = function (_ref) {
     return data;
   }));
 };
+/* AJAX END */
 },{}],"../public/logic/dom-manipulation.js":[function(require,module,exports) {
 "use strict";
 
@@ -440,77 +384,35 @@ DOM-MANIPULATION ASSETS
 */
 
 /* DOM-MANIPULATION JS BEGIN */
-console.log("%c\n\n\n(Defered)", "color:orangered;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 0px black;font-weight:regular");
-console.log("%c\nREACHED DOM-MANIPULATION.JS\n\n\n", "color:lime;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 1px black;font-weight:bold; border-bottom: solid 2px lime;");
+// console.log(`%c\n\n\n(Defered)`, `color:orangered;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 0px black;font-weight:regular`)
+// console.log(`%c\nREACHED DOM-MANIPULATION.JS\n\n\n`, `color:lime;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 1px black;font-weight:bold; border-bottom: solid 2px lime;`)
+
 /* 
     SpreadJS Selectors (REPLACES: document.getElementBy[Id, ClassName, TagName]('') & document.[querySelector, querySelctorAll]('') )
 
     getEl()
 */
 // Imports
-
 // SpreadApp Containers & Logic
 var backstageEl = (0, _domManipulationMain.getEl)('#spreadAppBackstage')[0];
 var spreadAppEl = (0, _domManipulationMain.getEl)('#spreadApp')[0];
 var ON_OFF = (0, _domManipulationMain.getEl)('#ON_OFF_CONTROLS')[0];
-console.log(backstageEl);
-console.log(spreadAppEl);
-console.log(ON_OFF);
 ON_OFF.addEventListener('click', function (e) {
-  console.log('CLICK', e.target);
   spreadAppEl.classList.toggle('on');
   spreadAppEl.classList.toggle('off');
 });
-/* const imagesContainer = getEl('.slider-inner')[0]
-const PREV_BTN = getEl('.prev')[0]
-const NEXT_BTN = getEl('.next')[0]
-
-const allImages = getEl('img')
-allImages.forEach(img => {
-    console.log(img)
-})
-
-console.log(NEXT_BTN)
-NEXT_BTN.addEventListener('click', e => {
-    const currentImg = getEl('.active')
-    const nextImg = currentImg.next()
-    if (nextImg.length) {
-        currentImg.removeClass("active").css("z-index", -10)
-        nextImg.addClass("active").css("z-index", 10)
-    }
-})
-
-
-getEl(".prev").on("click", function () {
-    const currentImg = getEl(".active")
-    const prevImg = currentImg.prev()
-    
-    if (prevImg.length) {
-        currentImg.removeClass("active").css("z-index", -10)
-        prevImg.addClass("active").css("z-index", 10)
-    }
-})
-
-
-
-*/
-
 /* DOM-MANIPULATION JS END */
 
 var imageArray = [];
 var imageDataEl = (0, _domManipulationMain.getEl)("#spreadAppData")[0];
 var imageBackstageEl = (0, _domManipulationMain.getEl)("#spreadAppBackstageImg")[0];
-console.log(imageDataEl);
 var allImages = (0, _domManipulationMain.getEl)("img");
 allImages.forEach(function (img, index) {
-  console.log('Image Index: ', img.getAttribute('src'));
   var imageData = "".concat(allImages[index].getAttribute('src'));
   var imageElSrc = img.getAttribute('src');
-  console.log('imageElSrc: ', imageElSrc);
   imageArray.push(imageElSrc);
 }); // imageDataEl.appendChild(imageElArray)
 
-console.table(imageArray);
 imageArray.forEach(function (img, index) {
   var imageEl = document.createElement('div');
   imageEl.classList.add('image-data');
@@ -523,7 +425,6 @@ imageArray.forEach(function (img, index) {
 var allImagesData = (0, _domManipulationMain.getEl)('.image-data');
 allImagesData.forEach(function (imgData, index) {
   imgData.addEventListener('click', function (e) {
-    console.log('imgData: ', imgData.getAttribute('data-backstage-image'));
     var parentContainer = (0, _domManipulationMain.getEl)('.image-data');
     parentContainer.forEach(function (parent) {
       var parentIndex = parseInt(parent.getAttribute('data-backstage-image'));
@@ -535,15 +436,12 @@ allImagesData.forEach(function (imgData, index) {
           var imgContainer = document.createElement('img');
           imgContainer.setAttribute('data-image-id', "image__".concat(index));
           imgContainer.setAttribute('id', "image__".concat(index));
-          console.log(currentImageIndex, index);
           imgContainer.setAttribute('src', imgData.innerText);
           imgContainer.classList.add('backstage-image');
           parent.appendChild(imgContainer);
           imgContainer.addEventListener('click', function (e) {
             var imgContainerAttr = imgContainer.getAttribute('data-image-id');
             var imgToRemove = (0, _domManipulationMain.getEl)("#".concat(imgContainerAttr));
-            console.log('imgToRemove: ', imgToRemove);
-            console.log('imgContainer Attr: ', imgContainerAttr);
             parent.remove(imgToRemove);
           });
         }
@@ -551,60 +449,55 @@ allImagesData.forEach(function (imgData, index) {
     });
   });
 });
-(0, _domManipulationMain.getEl)(document).ready(function () {
-  (0, _domManipulationMain.getEl)(document).on("click", ".next", function () {
-    var currentImg = (0, _domManipulationMain.getEl)(".active");
-    currentImg.forEach(function (img, index) {
-      console.log('Image Index: ', currentImg[index]);
-    }); // const currentImgIteration = currentImg[i]
-    // console.log(currentImg[0])
+/* 
+getEl(document).ready(function () {
+    getEl(document).on("click", ".next", function () {
+        const currentImg = getEl(".active")
+        currentImg.forEach((img, index) => {
+        })
+        const nextImg = currentImg.next()
 
-    var nextImg = currentImg.next();
+        if (nextImg.length) {
+            currentImg.removeClass("active").css("z-index", -10)
+            nextImg.addClass("active").css("z-index", 10)
+        }
+    })
 
-    if (nextImg.length) {
-      currentImg.removeClass("active").css("z-index", -10);
-      nextImg.addClass("active").css("z-index", 10);
-    }
-  });
-  (0, _domManipulationMain.getEl)(".prev").on("click", function () {
-    var currentImg = (0, _domManipulationMain.getEl)(".active");
-    var prevImg = currentImg.prev();
+    getEl(".prev").on("click", function () {
+        const currentImg = getEl(".active")
+        const prevImg = currentImg.prev()
 
-    if (prevImg.length) {
-      currentImg.removeClass("active").css("z-index", -10);
-      prevImg.addClass("active").css("z-index", 10);
-    }
-  });
-});
+        if (prevImg.length) {
+            currentImg.removeClass("active").css("z-index", -10)
+            prevImg.addClass("active").css("z-index", 10)
+        }
+    })
+})
 
-_domManipulationMain.getEl.get({
-  url: "https://hub.dummyapis.com/employee?noofRecords=10&idStarts=1001",
-  success: function success(data) {
-    var dataEl = (0, _domManipulationMain.getEl)('#apiData')[0];
-    console.log(dataEl);
-    console.log("First success", data);
-    console.log(data[0]);
-    data.forEach(function (item) {
-      var itemEl = document.createElement('div');
-      itemEl.classList.add('array-item');
-      var itemName = document.createElement('p');
-      itemName.innerText = "".concat(item.firstName, " ").concat(item.lastName);
-      itemEl.appendChild(itemName);
-      var itemEmail = document.createElement('a');
-      itemEmail.setAttribute('href', "mailto:".concat(item.email));
-      itemEmail.innerText = item.email;
-      console.log(item.email);
-      itemEl.appendChild(itemEmail);
-      dataEl.appendChild(itemEl);
-    });
-  }
-}).done(function (data) {
-  return console.log("Second success", data);
-}).fail(function (e) {
-  return console.error("Fail", e);
-}).always(function () {
-  return console.log("Always");
-});
+getEl.get({
+    url: "https://hub.dummyapis.com/employee?noofRecords=10&idStarts=1001",
+    success: data => {
+        let dataEl = getEl('#apiData')[0]
+        data.forEach(item => {
+
+            let itemEl = document.createElement('div')
+            itemEl.classList.add('array-item')
+            let itemName = document.createElement('p')
+            itemName.innerText = `${item.firstName} ${item.lastName}`
+            itemEl.appendChild(itemName)
+            let itemEmail = document.createElement('a')
+            itemEmail.setAttribute('href', `mailto:${item.email}`)
+            itemEmail.innerText = item.email
+            itemEl.appendChild(itemEmail)
+
+            dataEl.appendChild(itemEl)
+        })
+    },
+})
+    .done(data => console.table(data))
+    .fail(e => console.error("Fail", e))
+    .always(() => console.log("Always"))
+ */
 },{"./dom-manipulation-main":"../public/logic/dom-manipulation-main.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -633,7 +526,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49764" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61774" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

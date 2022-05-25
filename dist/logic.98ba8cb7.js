@@ -117,9 +117,114 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../public/logic/index.js":[function(require,module,exports) {
-console.log("%c\nREACHED INDEX.JS", "color:lime;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 1px black;font-weight:bold; border-bottom: solid 2px lime;");
-},{}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"../public/logic/helper1.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fullName = fullName;
+exports.help1b = help1b;
+
+function fullName(fName, lName) {
+  console.log('helper1 module -- help1a function');
+  var fullName = "".concat(fName, " ").concat(lName);
+  console.log('Full Name: ', fullName);
+}
+
+function help1b() {
+  console.log('helper1 module -- help1b function');
+}
+},{}],"../public/logic/helper2.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.help2a = help2a;
+exports.help2b = help2b;
+
+function help2a() {
+  console.log('helper2 module -- help2a function');
+}
+
+function help2b() {
+  console.log('helper2 module -- help2b function');
+}
+},{}],"../public/logic/utils.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.age = exports.address = void 0;
+exports.default = sayName;
+exports.devices = void 0;
+exports.double = double;
+Object.defineProperty(exports, "fullName", {
+  enumerable: true,
+  get: function () {
+    return _helper.fullName;
+  }
+});
+Object.defineProperty(exports, "help1b", {
+  enumerable: true,
+  get: function () {
+    return _helper.help1b;
+  }
+});
+Object.defineProperty(exports, "help2a", {
+  enumerable: true,
+  get: function () {
+    return _helper2.help2a;
+  }
+});
+Object.defineProperty(exports, "help2b", {
+  enumerable: true,
+  get: function () {
+    return _helper2.help2b;
+  }
+});
+exports.name = void 0;
+
+var _helper = require("./helper1.js");
+
+var _helper2 = require("./helper2.js");
+
+// Export Default - Can only be used once per module (mainly a class or a function)
+function sayName() {
+  console.log('Spread User!');
+} // Export Variables
+
+
+var name = 'Double Number';
+exports.name = name;
+var age = 18;
+exports.age = age;
+var address = {
+  street: '123 Main St',
+  city: 'SpreadCity',
+  state: 'FL',
+  zip: '32121',
+  country: 'United States'
+};
+exports.address = address;
+var devices = ['SpreadSet', 'SpreadShield', 'SpreadMirror', 'FlexFloor']; // Export Functions
+
+exports.devices = devices;
+
+function double(n) {
+  return n * 2;
+} // Export other modules from this file
+},{"./helper1.js":"../public/logic/helper1.js","./helper2.js":"../public/logic/helper2.js"}],"../public/logic/index.js":[function(require,module,exports) {
+"use strict";
+
+var Utils = _interopRequireWildcard(require("./utils.js"));
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+},{"./utils.js":"../public/logic/utils.js"}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -147,7 +252,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49764" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61774" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

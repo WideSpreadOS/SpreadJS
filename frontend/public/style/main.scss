@@ -177,6 +177,10 @@ a {
     color: lightskyblue;
     font-weight: bold;
 }
+
+#spreadCore {
+    padding-top: 55px;
+}
 #spreadAppBackstage {
     min-width: 100vw;
     min-height: 100vh;
@@ -191,6 +195,7 @@ a {
     background-color: #555;
     color: #fff;
     font-size: 1.1rem;
+
 }
 #spreadApp {
     min-width: 100vw;
@@ -244,8 +249,26 @@ a {
     display: none;
 }
 
+.transparent__black {
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+    color: #fff;
+    box-shadow: 0 8px 16px #000;
+}
+.spread-el-container {
+    margin-inline: auto;
+    margin-top: 30px;
+    border-radius: 16px;
+    padding: 8px;
+    width: 300px;
+    max-width: 90vw;
+}
 
-
+.list-item h6 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: lightskyblue;
+}
 /* SpreadCards */
 
 .spread-card {

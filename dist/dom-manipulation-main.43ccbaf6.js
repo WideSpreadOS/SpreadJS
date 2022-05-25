@@ -174,70 +174,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-console.log("%c\nREACHED DOM-MANIPULATION-MAIN.JS", "color:lime;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 1px black;font-weight:bold; border-bottom: solid 2px lime;");
+// console.log(`%c\nREACHED DOM-MANIPULATION-MAIN.JS`, `color:lime;font-family:system-ui;font-size:1rem;-webkit-text-stroke: 1px black;font-weight:bold; border-bottom: solid 2px lime;`)
+
 /* DOM-MANIPULATION START */
-
-/* 
-class ElementCollection extends Array {
-    ready(cb) {
-        const isReady = this.some(e => {
-            console.log(e)
-            return e.readyState != null && e.readyState != 'loading'
-        })
-        if (isReady) {
-            cb()
-        } else {
-            this.on('DOMContentLoaded', cb)
-        }
-    }
-
-    on(event, cb) {
-        this.forEach(e => {
-            console.log(e)
-            e.addEventListener(event, cb)
-        })
-    }
-
-    next() {
-        return this.map(e => e.nextElementSibling).filter(e => e != null)
-    }
-
-    prev() {
-        return this.map(e => e.previousElementSibling).filter(e => e != null)
-    }
-
-    removeClass(className) {
-        this.forEach(e => e.classList.remove(className))
-        return this
-    }
-
-    addClass(className) {
-        this.forEach(e => e.classList.add(className))
-        return this
-    }
-
-    css(property, value) {
-        const camelProp = property.replace(/(-[a-z])/, g => {
-            return g.replace("-", "").toUpperCase()
-        })
-        this.forEach(e => (e.style[camelProp] = value))
-        return this
-    }
-}
-
-function getEl(param) {
-    if (typeof param === 'string' || param instanceof String) {
-        return new ElementCollection(...document.querySelectorAll(param))
-    } else {
-        return new ElementCollection(param)
-    }
-}
-
-
- */
-
-/* DOM-MANIPULATION END */
-
 var ElementCollection = /*#__PURE__*/function (_Array) {
   _inherits(ElementCollection, _Array);
 
@@ -330,6 +269,10 @@ var ElementCollection = /*#__PURE__*/function (_Array) {
 
   return ElementCollection;
 }( /*#__PURE__*/_wrapNativeSuper(Array));
+/* DOM-MANIPULATION END */
+
+/* AJAX START */
+
 
 exports.ElementCollection = ElementCollection;
 
@@ -406,6 +349,7 @@ getEl.get = function (_ref) {
     return data;
   }));
 };
+/* AJAX END */
 },{}],"../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -434,7 +378,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49764" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61774" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

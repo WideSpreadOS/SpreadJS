@@ -21,72 +21,139 @@
     <!-- Box Icons -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <!-- JS -->
-    <script defer="" src="/logic.98ba8cb7.js"></script>
+    <script defer="" type="module" src="/logic.98ba8cb7.js"></script>
     <script src="/dom-manipulation-main.43ccbaf6.js"></script>
 
     <!-- Defered JS -->
     <script defer="" src="/dom-manipulation.446ea3a6.js"></script>
+    <script defer="" src="/spread.ebe93214.sjs" rel="text/javascript" type="module"></script>
+    <script src="/spreadCore.4f0c43e0.js" type="module"></script>
 
 <script src="/main.60eced4d.js"></script></head>
 <body>
+    <!-- SPREADCORE -->
+    <div id="spreadCore">
 
+
+
+        <!-- <button type="button" id="spreadCoreBtn">Load spreadCore</button> -->
+    <!-- <input onchange="readFile(this)" type="file"> -->
+    
+    
     <!-- READ-ONLY DATA -->
- 
+    
     <div id="spreadAppBackstage">
         <h1>Backstage</h1>
-        
-        <div class="spread-card">
-            <div class="spread-card-header">
-                <h3>API Fetch Data</h3>
-            </div>
-            <div class="spread-card-body">
-                <div id="apiData"></div>
-            </div>
-        </div>
-
-        <div class="spread-card">
-            <div class="spread-card-header">
-                <h3>#spreadApp Data</h3>
-            </div>
-            <div class="spread-card-body">
-                <div id="spreadAppData"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- INTERACTIVE DATA -->
-
-
-    <div id="spreadApp" class="on">
-        <h1>App</h1>
-
-    <div class="spread-card">
-        <div class="spread-card-header">
-            <h3>Image Slider</h3>
-        </div>
-        <div class="container">
-            <div class="slider-outer">
-                <img src="/arrow-left.e06ac701.png" class="prev" alt="Prev">
-                <div class="slider-inner">
-                    <img src="/image1.081609a2.jpg" class="active">
-                    <img src="/image2.38d8683e.jpg">
-                    <img src="/image3.86e277f6.jpg">
-                    <img src="/image4.f35a881b.jpg">
+        <div id="output"></div>
+            
+            <div class="spread-card">
+                <div class="spread-card-header">
+                    <h3>API Fetch Data</h3>
                 </div>
-                <img src="/arrow-right.459945f0.png" class="next" alt="Next">
+                <div class="spread-card-body">
+                    <div id="apiData"></div>
+                </div>
+            </div>
+
+            <div class="spread-card">
+                <div class="spread-card-header">
+                    <h3>#spreadApp Data</h3>
+                </div>
+                <div class="spread-card-body">
+                    <div id="spreadAppData"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- INTERACTIVE DATA -->
+
+
+        <div id="spreadApp" class="on">
+            <h1>App</h1>
+
+
+        <div class="spread-el-container transparent__black">
+            <ul id="list">
+                <!--Generated list items will go here-->
+            </ul>
+        </div>
+
+
+        <div class="spread-card">
+            <div class="spread-card-header">
+                <h3>Image Slider</h3>
+            </div>
+            <div class="container">
+                <div class="slider-outer">
+                    <img src="/arrow-left.e06ac701.png" class="prev" alt="Prev">
+                    <div class="slider-inner">
+                        <img src="/image1.081609a2.jpg" class="active">
+                        <img src="/image2.38d8683e.jpg">
+                        <img src="/image3.86e277f6.jpg">
+                        <img src="/image4.f35a881b.jpg">
+                    </div>
+                    <img src="/arrow-right.459945f0.png" class="next" alt="Next">
+                </div>
             </div>
         </div>
+        <div id="apiData"></div>
+        </div>
+
+
+        <!-- TEST END -->
+
+
+        <!-- ON/OFF CONTROLS -->
+        <div id="ON_OFF_CONTROLS" style="position: fixed; top: 10px; left: 10px;"><i class="bx bx-bulb"></i></div>
     </div>
-    <div id="apiData"></div>
-    </div>
+
+    <!-- READ FILE LOGIC -->
+        <script>function readFile(input) {
+  var file = input.files[0];
+  var fileReader = new FileReader();
+  fileReader.readAsText(file); // fileReader.onload = function () {
+  //     const outputEl = document.getElementById('output')
+  //     outputEl.innerText = fileReader.result
+  //     // alert(fileReader.result);
+  // };
+
+  fileReader.onerror = function () {
+    alert(fileReader.error);
+  };
+}</script>
+
+        <script id="template-list-item" type="text/template">
+            <li class="list-item">
+              <h6>{{name}}</h6>
+              <p>Year: {{year}}</p>
+            </li>
+        </script>
+
+        <script>var dataObject = {
+  0: {
+    "name": "Knight XV",
+    "year": "2022"
+  },
+  1: {
+    "name": "McLaren",
+    "year": "2022"
+  }
+}; // Cache of the template
+
+var template = document.getElementById("template-list-item"); // Get the contents of the template
+
+var templateHtml = template.innerHTML; // Final HTML variable as empty string
+
+var listHtml = ""; // Loop through dataObject, replace placeholder tags
+// with actual data, and generate final HTML
+
+for (var key in dataObject) {
+  listHtml += templateHtml.replace(/{{id}}/g, dataObject[key]["id"]).replace(/{{name}}/g, dataObject[key]["name"]).replace(/{{year}}/g, dataObject[key]["year"]);
+} // Replace the HTML of #list with final HTML
 
 
-    <!-- TEST END -->
-
-
-    <!-- ON/OFF CONTROLS -->
-    <div id="ON_OFF_CONTROLS" style="position: fixed; top: 10px; left: 10px;"><i class="bx bx-bulb"></i></div>
+document.getElementById("list").innerHTML = listHtml;</script>
 
 </body>
 </html>
